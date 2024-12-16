@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cart
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: cart
+    project: roboshop
+    tier: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+      project: roboshop
+      tier: app
+  template:
+    metadata:
+      name: cart
+      labels:  # these labels are pod labels
+        app: cart
+        project: roboshop
+        tier: app
+    spec:
+      containers:
+      - name: cart
+        image: "{{ .Values.deployment.imageURL }}:{{ .Values.deployment.imageVersion }}"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+             name: cart
