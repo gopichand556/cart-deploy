@@ -1,23 +1,22 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: Deployment
-metadata: 
+metadata:
   name: cart
   namespace: roboshop
-  labels: # these labels are deployment labels
-    app: cart
-    project: roboshop
-    tier: app
+  labels:
+     app: cart
+     project: roboshop
+     tier: app
 spec:
   replicas: 1
   selector:
-    matchLabels:
+    matchLabels: # these labels are used to find the pods
       app: cart
       project: roboshop
       tier: app
   template:
     metadata:
-      name: cart
-      labels:  # these labels are pod labels
+      labels: # these labels are pod labels
         app: cart
         project: roboshop
         tier: app
@@ -28,4 +27,4 @@ spec:
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-             name: cart
+            name: cart

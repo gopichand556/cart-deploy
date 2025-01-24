@@ -1,4 +1,4 @@
 apiVersion: v1
 name: cart
 version: 0.0.1
-description: this chart is to manage cart application
+description: "This chart is to manage cart application"

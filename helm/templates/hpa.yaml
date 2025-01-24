@@ -1,14 +1,13 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
-metadata: 
-  name: cart
-  namespace: roboshop
+metadata:
+ name: cart
+ namespace: roboshop
 spec:
-  scaleTargetRef:
-     apiVersion: v1
-     kind: Deployment
-     name: cart
-   
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: {{ .Values.hpa.cpuUtilization }} # usually 75 in real environment
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: cart
+ minReplicas: 1
+ maxReplicas: 10
+ targetCPUUtilizationPercentage: {{ .Values.hpa.cpuUtilization }} # usually 75 in real environment
